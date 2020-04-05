@@ -11,19 +11,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     int counter = 0;
     TextView tv;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tv = findViewById(R.id.textview);
+
+        tv = findViewById(R.id.text);
         tv.setText(counter + "");
 
         View.OnClickListener listener = new View.OnClickListener() {
@@ -40,19 +41,19 @@ public class MainActivity extends AppCompatActivity {
                 tv.setText(counter + "");
             }
         };
-        Button btn_inc = findViewById(R.id.btn);
+        View.OnClickListener resetListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                counter=0;
+                tv.setText(counter + "");
+            }
+        };
+        ImageView btn_inc = findViewById(R.id.btn);
         btn_inc.setOnClickListener(listener);
-        Button btn_dec = findViewById(R.id.btn2);
+        ImageView btn_dec = findViewById(R.id.btn1);
         btn_dec.setOnClickListener(declistener);
-        String message = getString(android.R.string.dialog_alert_title);
-
-//        AlertDialog ad = new AlertDialog.Builder(this)
-//                .setMessage(R.string.message)
-//                .setTitle(getString(android.R.string.dialog_alert_title))
-//                .create();
-//        ad.show();
-        Toast.makeText(this,"this is a string",Toast.LENGTH_LONG).show();
-
+        Button reset =findViewById(R.id.button);
+        reset.setOnClickListener(resetListener);
 
     }
 
